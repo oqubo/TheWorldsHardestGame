@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - checkpoint
   - goal
+  - coin
   layers:
   - Default
   - TransparentFX

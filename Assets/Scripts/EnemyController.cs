@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class Enemigo : MonoBehaviour
 {
+
+
+    [SerializeField] private bool vertical = true; 
+    // If true, the enemy moves vertically, else horizontally
+
     [SerializeField] private float speed = 5f; // Speed of the enemy
 
 
@@ -16,8 +21,15 @@ public class Enemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime); // Move the enemy up
-        
+        if (vertical)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime); 
+        }
+        else
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime); 
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)

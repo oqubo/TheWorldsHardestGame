@@ -1,18 +1,32 @@
+using TMPro;
+using UnityEngine.SceneManagement;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEditor;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     private float h, v;
    [SerializeField] private float speed = 5f; // Speed of the player
    [SerializeField] private int life = 3; // Life of the player
+   [SerializeField] private int coins = 0; // Coins collected by the player 
    [SerializeField] private GameObject checkpoint; // Checkpoint object
+   [SerializeField] private GameObject popupGameOver, popupGameWin; // Game Over and Game Win popups
+   [SerializeField] private SceneAsset nextLevel; // Next level object
+
+  [SerializeField] private TextMeshProUGUI textLifes, textCoins; 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        textLifes.text = "Lifes: " + life; // Initialize the life text
+        textCoins.text = "Coins: " + coins; // Initialize the coins text
+        this.transform.position = checkpoint.transform.position; // Set the initial position of the player        
+
+        popupGameOver.SetActive(false); // Hide the Game Over popup
+        popupGameWin.SetActive(false); // Hide the Game Win popup
     }
 
     // Update is called once per frame
@@ -25,12 +39,16 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision with: " + other.gameObject.tag); // Log the collision
+
 
 
         if (other.gameObject.CompareTag("goal"))
         {
-            Debug.Log("Goal reached!"); // Player reached the goal
+            popupGameWin.SetActive(true); // Show the Game Win popup
+            Time.timeScale = 0; // Pause the game
+            // load the next level after 3 seconds
+            StartCoroutine(closeGameWin(3f));
+
         }
         if (other.gameObject.CompareTag("checkpoint"))
         {
@@ -39,16 +57,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("enemy"))
         {
             life--;
+            textLifes.text = "Lifes: " + life; // Update the life text
+
             if(life==0)
             {
-                // Game Over
-                Debug.Log("Game Over");
-                Destroy(gameObject); // Destroy the player object
+                popupGameOver.SetActive(true); // Show the Game Over popup
+                Time.timeScale = 0; // Pause the game
+                // load the same level after 3 seconds
+                StartCoroutine(closeGameOver(3f));
             }
             else
             {
-                // Player hit by enemy
-                Debug.Log("Player hit by enemy. Life left: " + life);
                 this.transform.position = checkpoint.transform.position; // Respawn at the checkpoint
             }
 
@@ -56,8 +75,32 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("wall"))
         {
                 // Player hit by enemy
-                Debug.Log("Player hit by enemy. Life left: " + life);
                 this.transform.position = checkpoint.transform.position; // Respawn at the checkpoint
         }
+        if (other.gameObject.CompareTag("coin"))
+        {
+            coins++;
+            textCoins.text = "Coins: " + coins; // Update the coins text
+
+            Destroy(other.gameObject); // Destroy the coin object
+        }
     }
+
+    private IEnumerator closeGameOver(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
+        Time.timeScale = 1; // Resume the game
+        popupGameOver.SetActive(false); // Hide the Game Over popup
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+
+    }
+
+    private IEnumerator closeGameWin(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
+        Time.timeScale = 1; // Resume the game
+        popupGameWin.SetActive(false); // Hide the popup
+        SceneManager.LoadScene(nextLevel.name); // Reload the next scene
+    }
+
 }
