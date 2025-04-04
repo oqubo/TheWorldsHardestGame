@@ -9,6 +9,7 @@ TagManager:
   - checkpoint
   - goal
   - coin
+  - teleport
   layers:
   - Default
   - TransparentFX

@@ -1,35 +1,34 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemigo : MonoBehaviour
+
+
+public class AutomaticDoorController : MonoBehaviour
 {
 
-    [SerializeField] private float speed = 5f; // Speed of the enemy
 
+[SerializeField] private float speed = 1f;
 
+Vector3 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-            
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-            transform.Translate(Vector3.down * speed * Time.deltaTime); 
-
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
+         
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.CompareTag("wall"))
         {
-            // Reverse the direction of the enemy
             speed = -speed;
         }
-
-
     }
 }

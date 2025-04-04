@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private int coins = 0; // Coins collected by the player 
    [SerializeField] private GameObject checkpoint; // Checkpoint object
    [SerializeField] private GameObject popupGameOver, popupGameWin; // Game Over and Game Win popups
-   [SerializeField] private SceneAsset nextLevel; // Next level object
+   [SerializeField] private string nextLevel; // Next level object
 
   [SerializeField] private TextMeshProUGUI textLifes, textCoins; 
 
@@ -81,6 +81,10 @@ public class PlayerController : MonoBehaviour
 
             Destroy(other.gameObject); // Destroy the coin object
         }
+        if (other.gameObject.CompareTag("teleport"))
+        {
+            this.transform.position = other.gameObject.GetComponent<TeleportController>().tarjet.transform.position; // Teleport the player
+        }
     }
 
     private IEnumerator closeGameOver(float delay)
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
         Time.timeScale = 1; // Resume the game
         popupGameWin.SetActive(false); // Hide the popup
-        SceneManager.LoadScene(nextLevel.name); // Reload the next scene
+        SceneManager.LoadScene(nextLevel); // Reload the next scene
     }
 
 }
