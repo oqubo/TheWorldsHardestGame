@@ -2,6 +2,8 @@
 
 Este proyecto es una reinterpretación del clásico The World’s Hardest Game, con una implementación básica funcional y una serie de extensiones que amplían su jugabilidad.
 
+### Enlace itch.io https://oqubo.itch.io/theworldshardestgame
+
 ## Objetivo del juego
 
 El jugador debe llegar al objetivo final de cada nivel evitando obstáculos en movimiento (y opcionalmente recolectando todas las monedas del escenario) sin perder todas sus vidas.
