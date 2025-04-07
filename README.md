@@ -1,5 +1,9 @@
 # The Worlds Hardest Game
 
+
+![](img/cover.png)
+
+
 Este proyecto es una reinterpretación del clásico The World’s Hardest Game, con una implementación básica funcional y una serie de extensiones que amplían su jugabilidad.
 
 ### Enlace itch.io https://oqubo.itch.io/theworldshardestgame
@@ -8,7 +12,7 @@ Este proyecto es una reinterpretación del clásico The World’s Hardest Game, 
 
 El jugador debe llegar al objetivo final de cada nivel evitando obstáculos en movimiento (y opcionalmente recolectando todas las monedas del escenario) sin perder todas sus vidas.
 
-![](capture.png)
+
 
 ## Controles 
 
@@ -29,3 +33,13 @@ El jugador se desplaza usando las flechas del teclado.
 - Menú principal: pantalla inicial con opciones para iniciar partida, seleccionar nivel o salir del juego.
 - Varios niveles: implementación de varios niveles con diferentes configuraciones y retos.
 
+
+![](img/1.png)
+
+![](img/2.png)
+
+![](img/3.png)
+
+![](img/4.png)
+
+![](img/5.png)
