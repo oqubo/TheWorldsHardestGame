@@ -1,12 +1,18 @@
-# The Worlds Hardest Game
+
+<p align="left">
+  <img src="img/cover.png" alt="Portada del juego" width="250"/>
+</p>
 
 
-![](img/cover.png)
+<a href="https://oqubo.itch.io/theworldshardestgame" target="_blank">
+  <img src="https://static.itch.io/images/badge.svg" alt="Jugar en itch.io" width="200"/>
+</a>
+
+[![Ver en GitHub](https://img.shields.io/badge/GitHub-oqubo/TheWorldsHardestGame-181717?logo=github)](https://github.com/oqubo/TheWorldsHardestGame)
 
 
 Este proyecto es una reinterpretación del clásico The World’s Hardest Game, con una implementación básica funcional y una serie de extensiones que amplían su jugabilidad.
 
-### Enlace itch.io https://oqubo.itch.io/theworldshardestgame
 
 ## Objetivo del juego
 
